@@ -1,0 +1,165 @@
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Media.Media3D;
+
+namespace Visualization
+{
+    //public class Ray
+    //{
+    //    public Point3D Point { get; set; }
+    //    public Vector3D Direction
+    //    {
+    //        get { return direction; }
+    //        set
+    //        {
+    //            value.Normalize();
+    //            direction = value;
+    //        }
+
+    //    }
+
+    //    // FIELDS
+    //    private Vector3D direction;
+
+    //    public Point3D GetPointAtDistance(double distance)
+    //    {
+    //        return new Point3D(Point.X + distance * Direction.X
+    //                            , Point.Y + distance * Direction.Y
+    //                            , Point.Z + distance * Direction.Z);
+    //    }
+    //}
+
+    public class Ray2D
+    {
+        // PROPERTIES
+        public PointF Origin
+        {
+            get { return doubleRay.Origin; }
+            set { doubleRay.Origin = value; }
+        }
+        public PointF Direction
+        {
+            get { return doubleRay.Direction; }
+            set { doubleRay.Direction = value; }
+        }
+
+        // FIELDS
+        private DoubleRay2D doubleRay;
+
+        // CONSTRUCTORS
+        public Ray2D(PointF origin, PointF direction)
+        {
+            doubleRay = new DoubleRay2D()
+            {
+                Origin = origin,
+                Direction = direction,
+            };
+        }
+
+        public bool IntersectsWith(Ray2D ray1, out PointF intersectionPoint)
+        {
+            DoubleRay2D doubleRay2 = ray1.GetDoubleRay();
+            bool thereIsIntersection = doubleRay2.IntersectsWith(doubleRay, out intersectionPoint);
+
+            return thereIsIntersection
+                && GetDistanceAtPoint(intersectionPoint) >= 0
+                && ray1.GetDistanceAtPoint(intersectionPoint) >= 0;
+        }
+
+        public bool ContainsPoint(PointF p)
+        {
+            return doubleRay.ContainsPoint(p)
+                   && GetDistanceAtPoint(p) >= 0;
+        }
+
+        public float GetDistanceAtPoint(PointF p)
+        {
+            return doubleRay.GetDistanceAtPoint(p);
+        }
+
+        public float[] GetLineCoeficients()
+        {
+            return doubleRay.GetLineCoeficients();
+        }
+
+        public DoubleRay2D GetDoubleRay()
+        {
+            return doubleRay;
+        }
+    }
+
+    public class DoubleRay2D
+    {
+        public PointF Origin { get; set; }
+        private PointF direction;
+        public PointF Direction
+        {
+            get { return direction; }
+            set
+            {
+                float length = (float)Math.Sqrt(Math.Pow(value.X, 2) + Math.Pow(value.Y, 2));
+                direction = length > 0
+                    ? new PointF(value.X / length, value.Y / length)
+                    : value;
+            }
+        }
+
+        public bool IntersectsWith(DoubleRay2D ray, out PointF intersection)
+        {
+            bool intersect = false;
+            intersection = PointF.Empty;
+
+            float[] c1 = GetLineCoeficients();
+            float[] c2 = ray.GetLineCoeficients();
+
+            float det = c1[0] * c2[1] - c2[0] * c1[1];
+            if (Math.Abs(det) >= 1e-6)
+            {
+                float x = (c2[1] * c1[0] - c1[1] * c2[2]) / det;
+                float y = (c1[0] * c2[2] - c2[0] * c1[2]) / det;
+                intersection = new PointF(x, y);
+                intersect = true;
+            }
+
+            return intersect;
+        }
+
+        public bool ContainsPoint(PointF p)
+        {
+            float[] c1 = GetLineCoeficients();
+            PointF dr = new PointF(p.X - Origin.X, p.Y - Origin.Y);
+            DoubleRay2D dr2D = new DoubleRay2D()
+            {
+                Origin = Origin,
+                direction = dr,
+            };
+            float[] c2 = dr2D.GetLineCoeficients();
+            double error = c2.Select((t, index) => Math.Pow(c1[index] - t, 2)).Sum();
+            error = Math.Sqrt(error);
+
+            return error <= 1e-6;
+        }
+
+        public float GetDistanceAtPoint(PointF p)
+        {
+            PointF vr = new PointF(p.X - Origin.X, p.Y - Origin.Y);
+            return direction.X * vr.X + direction.Y * vr.Y;
+        }
+
+        public float[] GetLineCoeficients()
+        {
+            // it returns the coefficients in the form of a*x+b*y=c, where
+            // a = y2-y1; b = x2-x1; c = a*x1+b*y1
+            float a = direction.Y;
+            float b = direction.X;
+            float c = a * Origin.X + b * Origin.Y;
+
+            float[] coefs = { a, b, c };
+            return coefs;
+        }
+    }
+}

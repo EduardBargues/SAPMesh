@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sap2000MeshGenerator", "Sap2000MeshGenerator\Sap2000MeshGenerator.csproj", "{AE5B6849-9B96-4A49-94AC-DC3B7876DAA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\FileManager.csproj", "{2792B5F4-50CA-4CDC-899E-C2515040B87D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeshGenerator", "MeshGenerator\MeshGenerator.csproj", "{0FF623A3-2658-402D-BE76-0E90CDDBD971}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometryManager", "GeometryManager\GeometryManager.csproj", "{E6F2AAB0-E78F-4CA1-BFFD-D61B4ADE2209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAP2000 model", "SAP2000 model\SAP2000 model.csproj", "{B68187F5-B424-434F-AD5A-E9D2DB31FFE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE5B6849-9B96-4A49-94AC-DC3B7876DAA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE5B6849-9B96-4A49-94AC-DC3B7876DAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE5B6849-9B96-4A49-94AC-DC3B7876DAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE5B6849-9B96-4A49-94AC-DC3B7876DAA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2792B5F4-50CA-4CDC-899E-C2515040B87D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2792B5F4-50CA-4CDC-899E-C2515040B87D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2792B5F4-50CA-4CDC-899E-C2515040B87D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2792B5F4-50CA-4CDC-899E-C2515040B87D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF623A3-2658-402D-BE76-0E90CDDBD971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF623A3-2658-402D-BE76-0E90CDDBD971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF623A3-2658-402D-BE76-0E90CDDBD971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF623A3-2658-402D-BE76-0E90CDDBD971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6F2AAB0-E78F-4CA1-BFFD-D61B4ADE2209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F2AAB0-E78F-4CA1-BFFD-D61B4ADE2209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F2AAB0-E78F-4CA1-BFFD-D61B4ADE2209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F2AAB0-E78F-4CA1-BFFD-D61B4ADE2209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B68187F5-B424-434F-AD5A-E9D2DB31FFE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B68187F5-B424-434F-AD5A-E9D2DB31FFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B68187F5-B424-434F-AD5A-E9D2DB31FFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B68187F5-B424-434F-AD5A-E9D2DB31FFE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
